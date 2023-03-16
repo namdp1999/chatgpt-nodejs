@@ -6,10 +6,12 @@ module.exports = {
       const url = "https://api.voicegpt.us/v1/histories/user-get-chatGPT";
       let data = req.body;
       const result = await moduleFetch.methodPost(url, data, next);
-      return res.status(200).json({
+      res.status(200).json({
           code: 200,
           data : result,
       })
-    } catch (error) {}
+    } catch (error) {
+      res.status(500).json({message: error.message})
+    }
   },
 };
